@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📖 دفترچه لغت هوشمند</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="bg-orbs">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+</div>
+
+<div class="container">
+
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+          <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <h1>دفترچه لغت</h1>
+        <p>کلمات انگلیسی خودت رو تمرین کن ✨</p>
+      </div>
+    </div>
+    <button class="icon-btn" id="settingsBtn" title="تنظیمات">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"/>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+      </svg>
+    </button>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-value" id="count">0</div>
+      <div class="stat-label">کل کلمات</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="revealedCount">0</div>
+      <div class="stat-label">کشف‌شده</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="hiddenCount">0</div>
+      <div class="stat-label">پنهان</div>
+    </div>
+  </div>
+
+  <div class="add-box glass">
+    <div class="input-wrap">
+      <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input id="enInput" type="text" dir="ltr" placeholder="English word..." autocomplete="off">
+    </div>
+    <div class="input-wrap">
+      <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/>
+      </svg>
+      <input id="faInput" type="text" placeholder="ترجمه فارسی..." autocomplete="off">
+    </div>
+    <button id="addBtn" class="btn-primary">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+      </svg>
+      <span>افزودن</span>
+    </button>
+  </div>
+
+  <div class="toolbar">
+    <button class="tool-btn" id="hideFaBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+        <line x1="1" y1="1" x2="23" y2="23"/>
+      </svg>
+      <span>پنهان کردن فارسی</span>
+    </button>
+    <button class="tool-btn" id="hideEnBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+        <line x1="1" y1="1" x2="23" y2="23"/>
+      </svg>
+      <span>پنهان کردن انگلیسی</span>
+    </button>
+    <button class="tool-btn" id="resetBtn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+      </svg>
+      <span>نمایش همه</span>
+    </button>
+  </div>
+
+  <div class="hint" id="hint"></div>
+  <div class="list" id="list"></div>
+</div>
+
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="drawer-header">
+    <h2>⚙️ تنظیمات</h2>
+    <button class="icon-btn" id="closeSettings">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+      </svg>
+    </button>
+  </div>
+  <div class="drawer-body">
+    <div class="setting-group">
+      <label class="setting-label">🎨 تم رنگی</label>
+      <div class="theme-picker">
+        <button class="theme-swatch" data-theme-value="dark" style="--swatch: linear-gradient(135deg, #0f0c29, #302b63);"></button>
+        <button class="theme-swatch" data-theme-value="light" style="--swatch: linear-gradient(135deg, #f8f9ff, #c7d2fe);"></button>
+        <button class="theme-swatch" data-theme-value="midnight" style="--swatch: linear-gradient(135deg, #0a1929, #1e3a5f);"></button>
+        <button class="theme-swatch" data-theme-value="rose" style="--swatch: linear-gradient(135deg, #2d1b3d, #5b2a5e);"></button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <label class="setting-label">🔠 اندازه فونت</label>
+      <div class="segmented" data-setting="fontSize">
+        <button data-value="small">کوچک</button>
+        <button data-value="medium" class="active">متوسط</button>
+        <button data-value="large">بزرگ</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <label class="setting-label">✨ انیمیشن‌ها</label>
+      <div class="segmented" data-setting="animations">
+        <button data-value="on" class="active">روشن</button>
+        <button data-value="off">خاموش</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <label class="setting-label">🔔 افکت صوتی</label>
+      <div class="segmented" data-setting="sound">
+        <button data-value="on">روشن</button>
+        <button data-value="off" class="active">خاموش</button>
+      </div>
+    </div>
+    <div class="setting-group">
+      <label class="setting-label">🗑️ مدیریت داده‌ها</label>
+      <button class="btn-danger" id="clearAll">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px">
+          <polyline points="3 6 5 6 21 6"/>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+        </svg>
+        <span>پاک کردن همه کلمات</span>
+      </button>
+    </div>
+    <div class="version-info">نسخه ۲.۰ — ساخته شده با ❤️</div>
+  </div>
+</aside>
+
+<div class="toast-container" id="toastContainer"></div>
+<div class="confetti-holder" id="confettiHolder"></div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
